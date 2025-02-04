@@ -1,58 +1,35 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const contactForm = document.getElementById('contactForm');
-    
-    if (contactForm) {
-        contactForm.addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            // Get form values
-            const formData = {
-                name: document.getElementById('name').value,
-                email: document.getElementById('email').value,
-                subject: document.getElementById('topic').value,
-                message: document.getElementById('message').value
-            };
+document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('contactForm');
+    const button = form.querySelector('button[type="submit"]');
 
-            // Disable submit button and show loading state
-            const submitButton = contactForm.querySelector('button[type="submit"]');
-            const originalText = submitButton.innerHTML;
-            submitButton.disabled = true;
-            submitButton.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> ' + 
-                                   i18next.t('contact.sending');
-
-            try {
-                // Get the API URL based on environment
-                const apiUrl = window.location.hostname === 'localhost' 
-                    ? '/api/contact'  // Local development
-                    : '/api/contact';  // Cloudflare Pages (same path)
-
-                // Send data to backend server
-                const response = await fetch(apiUrl, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(formData)
-                });
-
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-
-                // Show success message
-                alert(i18next.t('contact.messageSent'));
-                
-                // Reset form
-                contactForm.reset();
-            } catch (error) {
-                console.error('Error sending message:', error);
-                // Show error message
-                alert(i18next.t('contact.errorSending'));
-            } finally {
-                // Re-enable submit button
-                submitButton.disabled = false;
-                submitButton.innerHTML = originalText;
+    form.onsubmit = async (e) => {
+        e.preventDefault();
+        button.innerHTML = '<span class="spinner-border spinner-border-sm"></span> ' + i18next.t('form.sending');
+        
+        const data = {
+            name: form.name.value,
+            email: form.email.value,
+            subject: form.topic.value,
+            message: form.message.value
+        };
+        
+        try {
+            const res = await fetch('/api/contact', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(data)
+            });
+            if (res.ok) {
+                alert(i18next.t('contact.success'));
+                form.reset();
+            } else {
+                const result = await res.json();
+                alert(result.error || i18next.t('contact.error'));
             }
-        });
-    }
+        } catch {
+            alert(i18next.t('contact.error'));
+        }
+        
+        button.textContent = i18next.t('form.submit');
+    };
 });
