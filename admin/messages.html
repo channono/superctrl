@@ -109,19 +109,25 @@
                 });
 
                 if (!response.ok) {
-                    throw new Error('Failed to delete messages');
+                    const error = await response.json();
+                    throw new Error(error.error || 'Failed to delete messages');
                 }
 
+                const result = await response.json();
+                
                 // Remove deleted messages from UI and array
                 messageIds.forEach(id => {
-                    document.querySelector(`[data-message-id="${id}"]`).remove();
+                    const card = document.querySelector(`[data-message-id="${id}"]`);
+                    if (card) {
+                        card.remove();
+                    }
                     messages = messages.filter(m => m.id !== id);
                 });
 
-                alert('Messages deleted successfully');
+                alert(`Successfully deleted ${result.deletedCount} message(s)`);
             } catch (error) {
                 console.error('Error deleting messages:', error);
-                alert('Failed to delete messages. Please try again.');
+                alert(error.message || 'Failed to delete messages. Please try again.');
             }
         }
 
@@ -218,7 +224,12 @@
                     throw new Error('Failed to load messages');
                 }
                 
-                messages = await response.json();
+                const data = await response.json();
+                // Add key as id for each message
+                messages = data.map((msg, index) => ({
+                    ...msg,
+                    id: msg.key || `message_${Date.now()}_${index}`
+                }));
                 sortMessages('timestamp');
             } catch (error) {
                 console.error('Error loading messages:', error);
