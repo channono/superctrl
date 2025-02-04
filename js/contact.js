@@ -28,8 +28,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         } catch {
             alert(i18next.t('contact.error'));
+        } finally {
+            button.textContent = i18next.t('form.submit');
         }
-        
-        button.textContent = i18next.t('form.submit');
     };
 });
