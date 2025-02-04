@@ -1,5 +1,17 @@
 export async function onRequestGet(context) {
   try {
+    // Check if KV binding exists
+    if (!context.env.MESSAGES) {
+      console.error('KV binding MESSAGES not found');
+      return new Response(JSON.stringify({ 
+        error: 'KV binding not configured',
+        env: Object.keys(context.env)
+      }), {
+        status: 500,
+        headers: { 'Content-Type': 'application/json' }
+      });
+    }
+
     // List all keys from KV
     const keys = await context.env.MESSAGES.list();
     
@@ -10,7 +22,7 @@ export async function onRequestGet(context) {
         const messageData = JSON.parse(value);
         return {
           ...messageData,
-          id: key.name  // Include the KV key as id
+          id: key.name
         };
       })
     );
@@ -22,7 +34,12 @@ export async function onRequestGet(context) {
       headers: { 'Content-Type': 'application/json' }
     });
   } catch (error) {
-    return new Response(JSON.stringify({ error: 'Failed to read messages' }), {
+    console.error('Failed to read messages:', error);
+    return new Response(JSON.stringify({ 
+      error: 'Failed to read messages',
+      details: error.message,
+      stack: error.stack
+    }), {
       status: 500,
       headers: { 'Content-Type': 'application/json' }
     });
