@@ -949,7 +949,14 @@ const zhTranslation = {
         "selectTopic": "选择主题",
         "message": "您的留言",
         "messagePlaceholder": "我们如何帮助您？",
-        "submit": "发送留言"
+        "submit": "发送留言",
+        "success": "留言发送成功！",
+        "error": "留言发送失败，请重试",
+        "invalidEmail": "请输入有效的邮箱地址",
+        "sending": "发送中...",
+        "allFieldsRequired": "请填写所有必填项",
+        "duplicateMessage": "请稍后再发送类似的留言",
+        "networkError": "网络错误，请检查网络连接后重试"
     },
     "contact": {
         "topic": {
@@ -961,7 +968,7 @@ const zhTranslation = {
         "description": "有任何问题？我们的团队随时为您服务。",
         "sending": "发送中...",
         "messageSent": "谢谢！您的消息已成功发送。",
-        "errorSending": "抱歉，发送消息时出现错误。请重试。",
+        "error": "抱歉，发送消息时出现错误。请重试。",
         "selectSubject": "选择主题",
         "generalInquiry": "一般咨询",
         "technicalSupport": "技术支持",
