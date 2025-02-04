@@ -12,7 +12,7 @@ const zhTranslation = {
         "subtitle": "以创新自动化技术助力工业数字化转型",
         "exploreSolutions": "探索解决方案",
         "contactUs": "联系我们",
-        "yearsOfInnovation": "创新年限",
+        "yearsOfInnovation": "年持续创新",
         "features": {
             "smartControls": "智能控制",
             "energyEfficiency": "能源效率",
@@ -22,10 +22,10 @@ const zhTranslation = {
     },
     "about": {
         "title": "上海业控简介",
-        "description": "上海业控自动化科技有限公司是工业自动化和控制系统领域的领军企业。二十余年来，我们始终专注于通过尖端技术推动传统制造业的数字化转型。我们的解决方案整合了先进的PLC系统、智能传感器和数据分析技术，致力于提升生产效率和产品质量。作为值得信赖的自动化合作伙伴，我们服务于数据中心、制药工业、智能制造、3C、半导体制造等多个行业，助力企业实现能源优化和制造效率。",
+        "description": "上海业控自动化设备有限公司是工业自动化和控制系统领域的领军企业。二十余年来，我们始终专注于通过尖端技术推动传统制造业的数字化转型。我们的解决方案整合了先进的PLC系统、智能传感器和数据分析技术，致力于提升生产效率和产品质量。作为值得信赖的自动化合作伙伴，我们服务于数据中心、制药工业、智能制造、3C、半导体制造等多个行业，助力企业实现能源优化和制造效率。",
         "years": "行业经验",
         "projects": "项目案例",
-        "engineers": "工程师",
+        "engineers": "工程师团队",
         "satisfaction": "客户满意度",
         "points": {
             "iso9001": "ISO 9001",
@@ -115,7 +115,7 @@ const zhTranslation = {
             "description": "联系我们了解更多关于此产品的信息。"
         },
         "ac500": {
-            "title": "ABB AC500-V3 和 AC500-eco V3 PLC - 超控自动化",
+            "title": "ABB AC500-V3 和 AC500-eco V3 PLC - 业控自动化",
             "name": "AC500-V3 PLC",
             "description": "AC500-V3 PLC是ABB最新一代的PLC，专为工业自动化中的最高性能和可靠性而设计。",
             "features": {
@@ -256,8 +256,8 @@ const zhTranslation = {
         },
         "acs580mv": {
             "title": "ACS580MV 变频器",
-            "meta_title": "ACS580MV 中压变频器 - 超控自动化",
-            "meta_description": "ACS580MV 中压变频器适用于工业应用 - 超控自动化解决方案",
+            "meta_title": "ACS580MV 中压变频器 - 业控自动化",
+            "meta_description": "ACS580MV 中压变频器适用于工业应用 - 业控自动化解决方案",
             "description": "专为需要强大性能和可靠性的工业应用设计的先进中压变频器",
             "features": {
                 "title": "主要特点",
@@ -977,7 +977,7 @@ const zhTranslation = {
         "address": "上海，中国",
         "phone": "+86 021 6232 1520",
         "email": "466719205@qq.com",
-        "copyright": "2025 上海超控自动化有限公司。保留所有权利。",
+        "copyright": "2025 上海业控自动化设备有限公司。保留所有权利。",
         "privacyPolicy": "隐私政策",
         "termsOfService": "服务条款"
     }
