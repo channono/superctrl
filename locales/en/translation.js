@@ -977,15 +977,17 @@ const enTranslation = {
         "emailPlaceholder": "Enter your email",
         "selectTopic": "Select Topic",
         "message": "Your Message",
-        "messagePlaceholder": "How can we help you?",
-        "submit": "Send Message"
+        "messagePlaceholder": "Enter your message",
+        "submit": "Send Message",
+        "success": "Message sent successfully!",
+        "error": "Failed to send message. Please try again.",
+        "invalidEmail": "Please enter a valid email address",
+        "sending": "Sending...",
+        "allFieldsRequired": "All fields are required",
+        "duplicateMessage": "Please wait before sending another similar message",
+        "networkError": "Network error. Please check your connection and try again."
     },
     "contact": {
-        "topic": {
-            "sales": "Sales",
-            "support": "Support",
-            "partnership": "Partnership"
-        },
         "title": "Get In Touch",
         "description": "Have questions about our solutions? Our team is here to help.",
         "selectSubject": "Select Subject",
@@ -993,9 +995,18 @@ const enTranslation = {
         "technicalSupport": "Technical Support",
         "sales": "Sales",
         "sendMessage": "Send Message",
+        "success": "Message sent successfully!",
+        "error": "Failed to send message. Please try again.",
+        "invalidEmail": "Please enter a valid email address",
         "sending": "Sending...",
-        "messageSent": "Thank you! Your message has been sent successfully.",
-        "errorSending": "Sorry, there was an error sending your message. Please try again."
+        "allFieldsRequired": "All fields are required",
+        "duplicateMessage": "Please wait before sending another similar message",
+        "networkError": "Network error. Please check your connection and try again.",
+        "topic": {
+            "sales": "Sales Inquiry",
+            "support": "Technical Support",
+            "partnership": "Partnership"
+        }
     },
     "footer": {
         "contactInfo": "Contact Info",
