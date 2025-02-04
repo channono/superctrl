@@ -7,7 +7,11 @@ export async function onRequestGet(context) {
     const messages = await Promise.all(
       keys.keys.map(async (key) => {
         const value = await context.env.MESSAGES.get(key.name);
-        return JSON.parse(value);
+        const messageData = JSON.parse(value);
+        return {
+          ...messageData,
+          id: key.name  // Include the KV key as id
+        };
       })
     );
 
