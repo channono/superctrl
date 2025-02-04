@@ -1,0 +1,250 @@
+/* Product page specific styles */
+
+.product-hero {
+    background: linear-gradient(135deg, var(--background-light) 0%, #f0f9ff 100%);
+    padding: 120px 0 80px;
+}
+
+.product-hero h1 {
+    background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 800;
+}
+
+.product-hero .lead {
+    color: var(--text-secondary);
+    font-size: 1.25rem;
+    line-height: 1.8;
+}
+
+.product-image {
+    height: auto;
+    max-height: 320px;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+    border-radius: 1rem;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    display: block;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+.product-image:hover {
+    transform: scale(1.02);
+}
+
+.product-image-large {
+    margin-bottom: 1rem;
+    text-align: center;
+    background: transparent;
+    position: relative;
+    top: -3rem;
+    left: -2rem;
+}
+
+.product-image-large img {
+    width: auto;
+    max-width: 60%;
+    height: auto;
+    max-height: 300px;
+    display: inline-block;
+    object-fit: contain;
+    padding: 1rem;
+    background: transparent;
+    mix-blend-mode: multiply;
+}
+
+.product-image-large a {
+    display: block;
+    text-align: center;
+    background: transparent;
+}
+
+/* Feature cards */
+.feature-card {
+    background: #fff;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    height: 100%;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+}
+
+.feature-card i {
+    font-size: 2rem;
+    display: block;
+}
+
+.feature-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+}
+
+.feature-icon i {
+    color: white;
+    font-size: 1.5rem;
+}
+
+.feature-list {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 0;
+}
+
+.feature-list li {
+    margin-bottom: 0.5rem;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.feature-list li:before {
+    content: "•";
+    color: var(--bs-primary);
+    position: absolute;
+    left: 0;
+}
+
+/* Technical specifications */
+.specs-table {
+    background: #fff;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+}
+
+.specs-table .table {
+    margin-bottom: 0;
+}
+
+.specs-table th {
+    width: 40%;
+    color: var(--bs-gray-700);
+}
+
+.specs-table th {
+    background-color: var(--background-light);
+    border: none;
+    padding: 1rem;
+    font-weight: 600;
+}
+
+.specs-table td {
+    padding: 1rem;
+    border-color: #f0f0f0;
+}
+
+/* Case study section */
+.case-study-card {
+    border: none;
+    border-radius: 1rem;
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    padding: 2rem;
+}
+
+.case-study-card .card-title {
+    color: var(--primary-color);
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+}
+
+.case-study-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.stat-item {
+    text-align: center;
+    padding: 1.5rem;
+    background: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.stat-number {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+}
+
+/* Application cards */
+.application-card {
+    background: #fff;
+    border-radius: 1rem;
+    padding: 2rem;
+    height: 100%;
+    text-align: center;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+}
+
+.application-card:hover {
+    transform: translateY(-5px);
+}
+
+.application-card i {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.application-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.application-card:hover img {
+    transform: scale(1.1);
+}
+
+.application-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 2rem;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+    color: white;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .product-hero {
+        padding: 100px 0 60px;
+    }
+
+    .product-hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .case-study-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .application-card {
+        height: 200px;
+    }
+}

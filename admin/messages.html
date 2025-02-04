@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Message Admin - SuperCTRL</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        .table-hover tbody tr:hover {
+            background-color: rgba(0,0,0,.075);
+            cursor: pointer;
+        }
+        .sort-icon {
+            cursor: pointer;
+        }
+        .message-content {
+            max-width: 300px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .expanded .message-content {
+            white-space: normal;
+            max-width: none;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">SuperCTRL Admin</a>
+        </div>
+    </nav>
+
+    <div class="container py-5">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1>Customer Messages</h1>
+            <button class="btn btn-primary" onclick="loadMessages()">
+                <i class="bi bi-arrow-clockwise"></i> Refresh
+            </button>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead class="table-light">
+                    <tr>
+                        <th onclick="sortMessages('timestamp')" class="sort-icon">
+                            Date/Time <i class="bi bi-arrow-down-up"></i>
+                        </th>
+                        <th onclick="sortMessages('name')" class="sort-icon">
+                            Name <i class="bi bi-arrow-down-up"></i>
+                        </th>
+                        <th onclick="sortMessages('email')" class="sort-icon">
+                            Email <i class="bi bi-arrow-down-up"></i>
+                        </th>
+                        <th onclick="sortMessages('subject')" class="sort-icon">
+                            Subject <i class="bi bi-arrow-down-up"></i>
+                        </th>
+                        <th>Message</th>
+                    </tr>
+                </thead>
+                <tbody id="messagesTableBody">
+                    <!-- Messages will be loaded here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        let messages = [];
+        let currentSort = { field: 'timestamp', ascending: false };
+
+        function formatDate(dateString) {
+            return new Date(dateString).toLocaleString();
+        }
+
+        function toggleMessageExpansion(row) {
+            row.classList.toggle('expanded');
+        }
+
+        function sortMessages(field) {
+            if (currentSort.field === field) {
+                currentSort.ascending = !currentSort.ascending;
+            } else {
+                currentSort.field = field;
+                currentSort.ascending = true;
+            }
+
+            messages.sort((a, b) => {
+                let valueA = a[field];
+                let valueB = b[field];
+
+                if (field === 'timestamp') {
+                    valueA = new Date(valueA);
+                    valueB = new Date(valueB);
+                }
+
+                if (valueA < valueB) return currentSort.ascending ? -1 : 1;
+                if (valueA > valueB) return currentSort.ascending ? 1 : -1;
+                return 0;
+            });
+
+            displayMessages();
+        }
+
+        function displayMessages() {
+            const tbody = document.getElementById('messagesTableBody');
+            tbody.innerHTML = messages.map(message => `
+                <tr onclick="toggleMessageExpansion(this)">
+                    <td>${formatDate(message.timestamp)}</td>
+                    <td>${message.name}</td>
+                    <td>${message.email}</td>
+                    <td>${message.subject}</td>
+                    <td><div class="message-content">${message.message}</div></td>
+                </tr>
+            `).join('');
+        }
+
+        async function loadMessages() {
+            try {
+                // Get the API URL based on environment
+                const apiUrl = window.location.hostname === 'localhost' 
+                    ? '/api/messages'  // Local development
+                    : '/api/messages';  // Cloudflare Pages (same path)
+
+                const response = await fetch(apiUrl);
+                if (!response.ok) {
+                    throw new Error('Failed to load messages');
+                }
+                
+                messages = await response.json();
+                sortMessages('timestamp'); // Initial sort by timestamp
+            } catch (error) {
+                console.error('Error loading messages:', error);
+                alert('Failed to load messages. Please try again.');
+            }
+        }
+
+        // Load messages when page loads
+        document.addEventListener('DOMContentLoaded', loadMessages);
+    </script>
+</body>
+</html>
