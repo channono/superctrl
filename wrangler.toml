@@ -1,0 +1,10 @@
+name = "superctrl-website"
+main = "src/worker.js"
+compatibility_date = "2024-02-04"
+
+kv_namespaces = [
+  { binding = "MESSAGES", id = "YOUR_KV_NAMESPACE_ID" }  # Replace with your KV namespace ID
+]
+
+[site]
+bucket = "."  # Serves static files from root directory
