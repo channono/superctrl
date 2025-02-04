@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <title>SuperCTRL - Industrial Automation Solutions</title>
+    <meta name="description" content="Leading provider of industrial automation solutions in Asia Pacific">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+</head>    
+
+<body>
+    <!-- Demo Notice -->
+    <div class="alert alert-warning text-center mb-0" style="border-radius: 0;">
+        Demo for testing purposes only
+    </div>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">SuperCTRL</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#products" data-i18n="nav.products">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#solutions" data-i18n="nav.solutions">Solutions</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about" data-i18n="nav.about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact" data-i18n="nav.contact">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="blog/blog.html" data-i18n="nav.blog">Blog</a>
+                    </li>
+                </ul>
+                <div class="navbar-nav ms-auto">
+                    <div class="language-switcher">
+                        <button class="language-selector" data-language="en">
+                            <img src="images/flags/en.svg" alt="English">
+                        </button>
+                        <button class="language-selector" data-language="zh">
+                            <img src="images/flags/zh.svg" alt="中文">
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <h1 class="display-4 mb-4" data-i18n="hero.title">Innovative Industrial Solutions</h1>
+                    <p class="lead mb-4" data-i18n="hero.subtitle">Empowering Industry upgrade with Advanced Automation</p>
+                    <div class="d-flex gap-3 mb-4">
+                        <a href="#solutions" class="btn btn-primary btn-lg" data-i18n="hero.exploreSolutions">Explore Solutions</a>
+                        <a href="#contact" class="btn btn-outline-primary btn-lg" data-i18n="hero.contactUs">Contact Us</a>
+                    </div>
+                    <div class="hero-features">
+                        <div class="feature-grid">
+                            <div class="feature-item">
+                                <i class="fas fa-microchip"></i>
+                                <span data-i18n="hero.features.smartControls">Smart Controls</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-bolt"></i>
+                                <span data-i18n="hero.features.energyEfficiency">Energy Efficiency</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-robot"></i>
+                                <span data-i18n="hero.features.equipmentAutomation">Equipment Automation</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-network-wired"></i>
+                                <span data-i18n="hero.features.iotReady">IoT Ready</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <div class="hero-image-wrapper">
+                        <img src="images/applications/about.jpg" alt="Industrial Automation Solutions" class="img-fluid rounded-3 shadow-lg">
+                        <div class="experience-badge" data-aos="fade-up" data-aos-delay="200">
+                            <span class="years">20+</span>
+                            <span class="text" data-i18n="hero.yearsOfInnovation">Years of Innovation</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <h2 class="display-4 mb-4" data-i18n="about.title">About SuperCTRL</h2>
+                    <p class="lead mb-4" data-i18n="about.description">Founded in Shanghai, we specialize in transforming traditional manufacturing through advanced automation and intelligent control systems.</p>
+                    <div class="key-points mb-4">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="point-item mb-3">
+                                    <i class="fas fa-shield-alt text-primary me-2"></i>
+                                    <span data-i18n="about.points.iso9001">ISO 9001:2015 Certified</span>
+                                </div>
+                                <div class="point-item mb-3">
+                                    <i class="fas fa-clock text-primary me-2"></i>
+                                    <span data-i18n="about.points.24/7Support">24/7 Technical Support</span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="point-item mb-3">
+                                    <i class="fas fa-globe-asia text-primary me-2"></i>
+                                    <span data-i18n="about.points.globalServiceNetwork">Global Service Network</span>
+                                </div>
+                                <div class="point-item mb-3">
+                                    <i class="fas fa-flask text-primary me-2"></i>
+                                    <span data-i18n="about.points.rndInnovationCenter">R&D Innovation Center</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <div class="stats-section">
+                        <div class="row g-4">
+                            <div class="col-md-6">
+                                <div class="stats-card" data-aos="fade-up">
+                                    <div class="stats-icon mb-3">
+                                        <i class="fas fa-robot text-primary"></i>
+                                    </div>
+                                    <div class="number text-primary">500+</div>
+                                    <p class="stats-label" data-i18n="about.stats.automationSystems">Automation Systems</p>
+                                    <p class="stats-desc" data-i18n="about.stats.industrialRobots">Industrial robots & controls</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="stats-card" data-aos="fade-up" data-aos-delay="100">
+                                    <div class="stats-icon mb-3">
+                                        <i class="fas fa-industry text-success"></i>
+                                    </div>
+                                    <div class="number text-success">12</div>
+                                    <p class="stats-label" data-i18n="about.stats.industrySectors">Industry Sectors</p>
+                                    <p class="stats-desc" data-i18n="about.stats.specializedSolutions">Specialized solutions</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="stats-card" data-aos="fade-up" data-aos-delay="200">
+                                    <div class="stats-icon mb-3">
+                                        <i class="fas fa-microchip text-info"></i>
+                                    </div>
+                                    <div class="number text-info">200+</div>
+                                    <p class="stats-label" data-i18n="about.stats.smartProducts">Smart Products</p>
+                                    <p class="stats-desc" data-i18n="about.stats.iotEnabledDevices">IoT enabled devices</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="stats-card" data-aos="fade-up" data-aos-delay="300">
+                                    <div class="stats-icon mb-3">
+                                        <i class="fas fa-code-branch text-warning"></i>
+                                    </div>
+                                    <div class="number text-warning">45+</div>
+                                    <p class="stats-label" data-i18n="about.stats.softwareSolutions">Software Solutions</p>
+                                    <p class="stats-desc" data-i18n="about.stats.customApplications">Custom applications</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Business Overview Section -->
+    <section id="business-overview" class="py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h3 class="h4 mb-4" data-i18n="businessOverview.title">Business Distribution</h3>
+                    <div class="chart-container" style="position: relative; height: 250px;">
+                        <canvas id="businessDistributionChart"></canvas>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <h3 class="h4 mb-4" data-i18n="businessOverview.performanceTrends">Performance Trends</h3>
+                    <div class="chart-container" style="position: relative; height: 300px;">
+                        <canvas id="businessPerformanceChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solutions Section -->
+    <section id="solutions" class="solutions-section py-5">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="display-4" data-aos="fade-up" data-i18n="solutions.title">Industry Solutions</h2>
+                <p data-aos="fade-up" data-aos-delay="100" data-i18n="solutions.description">Comprehensive automation solutions tailored for modern industry needs</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4" data-aos="fade-up">
+                    <div class="solution-card">
+                        <div class="solution-image">
+                            <img src="images/solutions/manufacturing.jpg" alt="Smart Manufacturing" class="img-fluid">
+                            <div class="solution-overlay">
+                                <h3 data-i18n="solutions.items.smartManufacturing">Smart Manufacturing</h3>
+                            </div>
+                        </div>
+                        <div class="solution-content">
+                            <p data-i18n="solutions.descriptions.smartManufacturing">Comprehensive automation solutions for modern manufacturing facilities, including production line optimization and quality control systems.</p>
+                            <a href="solutions/manufacturing.html" class="btn btn-primary" data-i18n="solutions.learnMore">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="solution-card">
+                        <div class="solution-image">
+                            <img src="images/solutions/equipment.jpg" alt="Equipment Automation" class="img-fluid">
+                            <div class="solution-overlay">
+                                <h3 data-i18n="solutions.items.equipmentAutomation">Equipment Automation</h3>
+                            </div>
+                        </div>
+                        <div class="solution-content">
+                            <p data-i18n="solutions.descriptions.equipmentAutomation">Advanced automation solutions for industrial equipment, enhancing operational efficiency and reducing maintenance costs.</p>
+                            <a href="solutions/equipment.html" class="btn btn-primary" data-i18n="solutions.learnMore">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="solution-card">
+                        <div class="solution-image">
+                            <img src="images/solutions/datacenter.jpg" alt="Data Center Automation" class="img-fluid">
+                            <div class="solution-overlay">
+                                <h3 data-i18n="solutions.items.dataCenterAutomation">Data Center Automation</h3>
+                            </div>
+                        </div>
+                        <div class="solution-content">
+                            <p data-i18n="solutions.descriptions.dataCenterAutomation">Intelligent automation solutions for data centers, ensuring optimal performance, energy efficiency, and reliability.</p>
+                            <a href="solutions/datacenter.html" class="btn btn-primary" data-i18n="solutions.learnMore">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row g-4 mt-4">
+                <div class="col-md-4" data-aos="fade-up">
+                    <div class="solution-card">
+                        <div class="solution-image">
+                            <img src="images/solutions/power-monitor.jpg" alt="Power Monitor and Control" class="img-fluid">
+                            <div class="solution-overlay">
+                                <h3 data-i18n="solutions.items.powerMonitorAndControl">Power Monitor and Control</h3>
+                            </div>
+                        </div>
+                        <div class="solution-content">
+                            <p data-i18n="solutions.descriptions.powerMonitorAndControl">Comprehensive power monitoring and control solutions for real-time energy analysis, power quality management, and intelligent load control.</p>
+                            <a href="solutions/power-monitor.html" class="btn btn-primary" data-i18n="solutions.learnMore">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="solution-card">
+                        <div class="solution-image">
+                            <img src="images/solutions/energy.jpg" alt="Energy Management" class="img-fluid">
+                            <div class="solution-overlay">
+                                <h3 data-i18n="solutions.items.energyManagement">Energy Management</h3>
+                            </div>
+                        </div>
+                        <div class="solution-content">
+                            <p data-i18n="solutions.descriptions.energyManagement">Intelligent energy monitoring and optimization solutions for industrial facilities to reduce costs and improve sustainability.</p>
+                            <a href="solutions/energy.html" class="btn btn-primary" data-i18n="solutions.learnMore">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="solution-card">
+                        <div class="solution-image">
+                            <img src="images/solutions/process.jpg" alt="Process Control" class="img-fluid">
+                            <div class="solution-overlay">
+                                <h3 data-i18n="solutions.items.processControl">Process Control</h3>
+                            </div>
+                        </div>
+                        <div class="solution-content">
+                            <p data-i18n="solutions.descriptions.processControl">Advanced process control and monitoring solutions for continuous production environments and batch processing.</p>
+                            <a href="solutions/process.html" class="btn btn-primary" data-i18n="solutions.learnMore">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="products-section py-5">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="display-4" data-aos="fade-up" data-i18n="products.title">Global Products</h2>
+                <p data-aos="fade-up" data-aos-delay="100" data-i18n="products.description">High-quality automation hardware & software for reliable performance</p>
+            </div>
+            
+            <!-- Control Systems -->
+            <div class="product-category">
+                <h3 class="product-category-title" data-i18n="products.categories.controlSystems">Control Systems</h3>
+                <div class="row g-4">
+                    <div class="col-lg-4 col-md-6" data-aos="fade-up">
+                        <div class="product-card">
+                            <a href="products/ac500.html" class="product-link"></a>
+                            <div class="product-image">
+                                <img src="images/products/ac500.jpg" alt="AC500-V3" class="img-fluid">
+                                <div class="product-overlay">
+                                    <a href="products/ac500.html" class="btn btn-primary" data-i18n="products.viewSpecs">View Specs</a>
+                                </div>
+                            </div>
+                            <div class="product-content">
+                                <h4 class="product-title" data-i18n="products.items.ac500">AC500</h4>
+                                <p class="product-description" data-i18n="products.descriptions.ac500">Programmable Logic Controller</p>
+                                <ul class="product-features">
+                                    <li data-i18n="products.features.highPerformance">High performance</li>
+                                    <li data-i18n="products.features.modularDesign">Modular design</li>
+                                    <li data-i18n="products.features.iotReady">IoT ready</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                        <div class="product-card">
+                            <a href="products/system-800xa.html" class="product-link"></a>
+                            <div class="product-image">
+                                <img src="images/products/ac800m.png" alt="AC800M and S800 IO" class="img-fluid">
+                                <div class="product-overlay">
+                                    <a href="products/system-800xa.html" class="btn btn-primary" data-i18n="products.viewSpecs">View Specs</a>
+                                </div>
+                            </div>
+                            <div class="product-content">
+                                <h4 class="product-title" data-i18n="products.items.system800xa">System 800xA</h4>
+                                <p class="product-description" data-i18n="products.descriptions.system800xa">Distributed Control System</p>
+                                <ul class="product-features">
+                                    <li data-i18n="products.features.scalableArchitecture">Scalable architecture</li>
+                                    <li data-i18n="products.features.redundancySupport">Redundancy support</li>
+                                    <li data-i18n="products.features.hotSwapCapability">Hot-swap capability</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                        <div class="product-card">
+                            <a href="products/freelance.html" class="product-link"></a>
+                            <div class="product-image">
+                                <img src="images/products/freelance.png" alt="Freelance and IO" class="img-fluid">
+                                <div class="product-overlay">
+                                    <a href="products/freelance.html" class="btn btn-primary" data-i18n="products.viewSpecs">View Specs</a>
+                                </div>
+                            </div>
+                            <div class="product-content">
+                                <h4 class="product-title" data-i18n="products.items.freelance">Freelance</h4>
+                                <p class="product-description" data-i18n="products.descriptions.freelance">Process Automation System</p>
+                                <ul class="product-features">
+                                    <li data-i18n="products.features.easyConfiguration">Easy configuration</li>
+                                    <li data-i18n="products.features.integratedSafety">Integrated safety</li>
+                                    <li data-i18n="products.features.compactDesign">Compact design</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Power Management -->
+            <div class="product-category">
+                <h3 class="product-category-title" data-i18n="products.categories.powerManagement">Power Management</h3>
+                <div class="row g-4">
+                    <div class="col-lg-4 col-md-6" data-aos="fade-up">
+                        <div class="product-card">
+                            <a href="products/m1m.html" class="product-link"></a>
+                            <div class="product-image">
+                                <img src="images/products/m1m.jpg" alt="M1M Series" class="img-fluid">
+                                <div class="product-overlay">
+                                    <a href="products/m1m.html" class="btn btn-primary" data-i18n="products.viewSpecs">View Specs</a>
+                                </div>
+                            </div>
+                            <div class="product-content">
+                                <h4 class="product-title" data-i18n="products.items.m1m">M1M</h4>
+                                <p class="product-description" data-i18n="products.descriptions.m1m">Power Meter</p>
+                                <ul class="product-features">
+                                    <li data-i18n="products.features.easyInstallation">Easy installation</li>
+                                    <li data-i18n="products.features.essentialMeasurements">Essential measurements</li>
+                                    <li data-i18n="products.features.compactSize">Compact size</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                        <div class="product-card">
+                            <a href="products/m4m.html" class="product-link"></a>
+                            <div class="product-image">
+                                <img src="images/products/m4m.png" alt="M4M Series" class="img-fluid">
+                                <div class="product-overlay">
+                                    <a href="products/m4m.html" class="btn btn-primary" data-i18n="products.viewSpecs">View Specs</a>
+                                </div>
+                            </div>
+                            <div class="product-content">
+                                <h4 class="product-title" data-i18n="products.items.m4m">M4M</h4>
+                                <p class="product-description" data-i18n="products.descriptions.m4m">Network Analyzer</p>
+                                <ul class="product-features">
+                                    <li data-i18n="products.features.powerQualityAnalysis">Power quality analysis</li>
+                                    <li data-i18n="products.features.networkConnectivity">Network connectivity</li>
+                                    <li data-i18n="products.features.advancedAnalytics">Advanced analytics</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                        <div class="product-card">
+                            <a href="products/insite-pro.html" class="product-link"></a>
+                            <div class="product-image">
+                                <img src="images/products/insitepro2.png" alt="Insite Pro" class="img-fluid">
+                                <div class="product-overlay">
+                                    <a href="products/insite-pro.html" class="btn btn-primary" data-i18n="products.viewSpecs">View Specs</a>
+                                </div>
+                            </div>
+                            <div class="product-content">
+                                <h4 class="product-title" data-i18n="products.items.insitepro">InSite Pro</h4>
+                                <p class="product-description" data-i18n="products.descriptions.insitepro">Energy Management System</p>
+                                <ul class="product-features">
+                                    <li data-i18n="products.features.realTimeMonitoring">Real-time monitoring</li>
+                                    <li data-i18n="products.features.energyOptimization">Energy optimization</li>
+                                    <li data-i18n="products.features.cloudIntegration">Cloud integration</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Drives -->
+            <div class="product-category">
+                <h3 class="product-category-title" data-i18n="products.categories.drives">Variable Frequency Drives</h3>
+                <div class="row g-4">
+                    <div class="col-lg-3 col-md-6" data-aos="fade-up">
+                        <div class="product-card">
+                            <a href="products/acs580mv.html" class="product-link"></a>
+                            <div class="product-image">
+                                <img src="images/products/acs580mv.png" alt="ACS580MV" class="img-fluid">
+                                <div class="product-overlay">
+                                    <a href="products/acs580mv.html" class="btn btn-primary" data-i18n="products.viewSpecs">View Specs</a>
+                                </div>
+                            </div>
+                            <div class="product-content">
+                                <h4 class="product-title" data-i18n="products.items.acs580mv">ACS580MV</h4>
+                                <p class="product-description" data-i18n="products.descriptions.acs580mv">Medium Voltage Drive</p>
+                                <ul class="product-features">
+                                    <li data-i18n="products.features.mediumVoltageApplications">Medium voltage applications</li>
+                                    <li data-i18n="products.features.highPowerRange">High power range</li>
+                                    <li data-i18n="products.features.advancedControl">Advanced control</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                        <div class="product-card">
+                            <a href="products/acs880.html" class="product-link"></a>
+                            <div class="product-image">
+                                <img src="images/products/acs880.png" alt="ACS880" class="img-fluid">
+                                <div class="product-overlay">
+                                    <a href="products/acs880.html" class="btn btn-primary" data-i18n="products.viewSpecs">View Specs</a>
+                                </div>
+                            </div>
+                            <div class="product-content">
+                                <h4 class="product-title" data-i18n="products.items.acs880">ACS880</h4>
+                                <p class="product-description" data-i18n="products.descriptions.acs880">Industrial Drive</p>
+                                <ul class="product-features">
+                                    <li data-i18n="products.features.directTorqueControl">Direct torque control</li>
+                                    <li data-i18n="products.features.safetyFunctions">Safety functions</li>
+                                    <li data-i18n="products.features.flexibleControl">Flexible control</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                        <div class="product-card">
+                            <a href="products/acs580.html" class="product-link"></a>
+                            <div class="product-image">
+                                <img src="images/products/acs580.png" alt="ACS580" class="img-fluid">
+                                <div class="product-overlay">
+                                    <a href="products/acs580.html" class="btn btn-primary" data-i18n="products.viewSpecs">View Specs</a>
+                                </div>
+                            </div>
+                            <div class="product-content">
+                                <h4 class="product-title" data-i18n="products.items.acs580">ACS580</h4>
+                                <p class="product-description" data-i18n="products.descriptions.acs580">General purpose drive</p>
+                                <ul class="product-features">
+                                    <li data-i18n="products.features.energyEfficiency">Energy efficiency</li>
+                                    <li data-i18n="products.features.simpleSetup">Simple setup</li>
+                                    <li data-i18n="products.features.widePowerRange">Wide power range</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                        <div class="product-card">
+                            <a href="products/ach580.html" class="product-link"></a>
+                            <div class="product-image">
+                                <img src="images/products/ach580.png" alt="ACH580" class="img-fluid">
+                                <div class="product-overlay">
+                                    <a href="products/ach580.html" class="btn btn-primary" data-i18n="products.viewSpecs">View Specs</a>
+                                </div>
+                            </div>
+                            <div class="product-content">
+                                <h4 class="product-title" data-i18n="products.items.ach580">ACH580</h4>
+                                <p class="product-description" data-i18n="products.descriptions.ach580">HVAC Drive</p>
+                                <ul class="product-features">
+                                    <li data-i18n="products.features.hvacOptimized">HVAC optimized</li>
+                                    <li data-i18n="products.features.bacnetSupport">BACnet support</li>
+                                    <li data-i18n="products.features.energySavings">Energy savings</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <h2 class="display-4 mb-5" data-i18n="contact.title">Get In Touch</h2>
+                    <p class="lead mb-5" data-i18n="contact.description">Have questions about our solutions? Our team is here to help.</p>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="contact-form">
+                        <form id="contactForm">
+                            <div class="mb-3">
+                                <label for="name" class="form-label" data-i18n="form.name">Your Name</label>
+                                <input type="text" class="form-control" id="name" name="name" data-i18n="[placeholder]form.namePlaceholder" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label" data-i18n="form.email">Your Email</label>
+                                <input type="email" class="form-control" id="email" name="email" data-i18n="[placeholder]form.emailPlaceholder" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="topic" class="form-label" data-i18n="form.selectTopic">Select Topic</label>
+                                <select class="form-select" id="topic" name="topic" required>
+                                    <option value="" data-i18n="form.selectTopic">Select Topic</option>
+                                    <option value="sales" data-i18n="contact.topic.sales">sales</option>
+                                    <option value="support" data-i18n="contact.topic.support">support</option>
+                                    <option value="partnership" data-i18n="contact.topic.partnership">partnership</option>
+
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="message" class="form-label" data-i18n="form.message">Your Message</label>
+                                <textarea class="form-control" id="message" name="message" rows="5" data-i18n="[placeholder]form.messagePlaceholder" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary" data-i18n="form.submit">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer py-5 bg-dark text-light">
+        <div class="container">
+            <div class="row g-4">
+
+                <div class="col-lg-4">
+                    <h5 class="footer-heading" data-i18n="footer.contactInfo">Contact Info</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor" class="me-2">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+                        </svg> <span data-i18n="footer.address">Shanghai, China</span></li>
+                        <li class="mb-2"><svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor" class="me-2">
+                            <path d="M22 16.92v3.08c0 .38-.28.69-.63.69H2.63c-.35 0-.63-.31-.63-.69V9.92c0-.38.28-.69.63-.69h2.25c.35 0 .63.31.63.69v7.23h15.51c.35 0 .63-.31.63-.69zm-2.25-4.92H4.38V9.92h15.84v3.08z"/>
+                        </svg> <span data-i18n="footer.phone">+86 021 6232 1520</span></li>
+                        <li class="mb-2"><svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor" class="me-2">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2zm16 12V6H8v10H4v2h16v-2h-4zm-7 2H7v-2h7v2zm3-4H7V6h10v2z"/>
+                        </svg> <span data-i18n="footer.email">info@superctrl.com</span></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4">
+                    <h5 class="footer-heading" data-i18n="footer.followUs">Follow Us</h5>
+                    <div class="social-links mt-3">
+                        <a href="#" class="social-link" data-bs-toggle="modal" data-bs-target="#wechatModal" title="WeChat">
+                            <svg viewBox="0 0 24 24" width="24" height="24" class="me-2">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5.94 13.5l.79 2.57-2.88-1.57c-.97.27-1.97.41-2.88.41-3.58 0-6.49-2.45-6.49-5.48 0-3.03 2.91-5.48 6.49-5.48s6.49 2.45 6.49 5.48c0 1.72-.94 3.25-2.52 4.07zM8.9 9.91c-.56 0-1.01.45-1.01 1.01s.45 1.01 1.01 1.01 1.01-.45 1.01-1.01-.45-1.01-1.01-1.01zm6.19 0c-.56 0-1.01.45-1.01 1.01s.45 1.01 1.01 1.01 1.01-.45 1.01-1.01-.45-1.01-1.01-1.01z"/>
+                            </svg>
+                        </a>
+                        <a href="https://x.com/SuperCTRLAuto" class="social-link" target="_blank" title="X (Twitter)">
+                            <svg viewBox="0 0 24 24" width="24" height="24">
+                                <path d="M13.8 10.5L21.5 2h-3.3l-6.7 7.4L6 2H2l7.2 10.5L2 21h3.3l7.2-7.9L18.1 21H22l-8.2-10.5zm-2.4 2.7l-.9-1.2L4.3 3.7h2.7l5 6.9.9 1.2 6.5 8.9h-2.7l-5.2-7.5z"/>
+                            </svg>
+                        </a>
+                        <a href="https://www.xiaohongshu.com/user/profile/SuperCTRL" class="social-link" target="_blank" title="Xiaohongshu">
+                            <svg viewBox="0 0 24 24" width="24" height="24">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 15c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z"/>
+                            </svg>
+                        </a>
+                        <a href="https://www.tiktok.com/@superctrl_official" class="social-link" target="_blank" title="TikTok">
+                            <svg viewBox="0 0 24 24" width="24" height="24">
+                                <path d="M16.6 5.82s.51.5 0 0A4.278 4.278 0 0 1 19.75 4h-3.02a4.278 4.278 0 0 1-3.15 1.82v8.36c0 2.35-1.93 4.27-4.27 4.27s-4.27-1.92-4.27-4.27 1.93-4.27 4.27-4.27c.42 0 .83.06 1.21.18v-3.1c-.39-.04-.78-.06-1.17-.06C4.4 6.93 1 10.33 1 14.27s3.4 7.34 7.35 7.34 7.35-3.4 7.35-7.34V9.35c1.45.84 3.13 1.32 4.91 1.32v-3.1c-.82 0-1.58-.2-2.25-.54z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="text-center py-3">
+                        <p class="mb-0" data-i18n="footer.copyright"> 2025 Shanghai SuperCTRL Automation Co. Ltd. All rights reserved.</p>
+                        <p class="mb-0 mt-2 text-danger fw-bold" data-i18n="footer.demoDisclaimer">Demo for testing purposes only</p>
+                    </div>
+                </div>
+                <div class="col-md-4 text-md-end">
+                    <a href="#" class="text-light me-3" data-i18n="footer.privacyPolicy">Privacy Policy</a>
+                    <a href="#" class="text-light" data-i18n="footer.termsOfService">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WeChat QR Code Modal -->
+    <div class="modal fade" id="wechatModal" tabindex="-1" aria-labelledby="wechatModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="wechatModalLabel">
+                        <svg viewBox="0 0 24 24" width="24" height="24" class="me-2">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5.94 13.5l.79 2.57-2.88-1.57c-.97.27-1.97.41-2.88.41-3.58 0-6.49-2.45-6.49-5.48 0-3.03 2.91-5.48 6.49-5.48s6.49 2.45 6.49 5.48c0 1.72-.94 3.25-2.52 4.07zM8.9 9.91c-.56 0-1.01.45-1.01 1.01s.45 1.01 1.01 1.01 1.01-.45 1.01-1.01-.45-1.01-1.01-1.01zm6.19 0c-.56 0-1.01.45-1.01 1.01s.45 1.01 1.01 1.01 1.01-.45 1.01-1.01-.45-1.01-1.01-1.01z"/>
+                        </svg>
+                        <span data-i18n="footer.followUsOnWechat">Follow Us on WeChat</span>
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <img src="images/applications/qr-wechat.jpg" alt="WeChat QR Code" class="img-fluid wechat-qr" style="max-width: 200px;">
+                    <p class="mt-3 text-muted" data-i18n="footer.scanQrCode">Scan the QR code to follow our official WeChat account</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/i18next@21.6.10/dist/umd/i18next.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/i18next-http-backend@1.3.1/i18nextHttpBackend.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/i18next-browser-languagedetector@7.0.1/dist/umd/i18nextBrowserLanguageDetector.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-i18next@1.2.1/jquery-i18next.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="locales/en/translation.js"></script>
+    <script src="locales/zh/translation.js"></script>
+    <script src="js/i18n.js"></script>
+    <script src="js/home-charts.js"></script>
+    <script src="js/contact.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+    </script>
+</body>
+</html>
