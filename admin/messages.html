@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Messages</title>
+    <title>Message Management</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         .message-row {
@@ -24,11 +24,44 @@
         th:hover {
             background-color: #f8f9fa;
         }
+        .table {
+            table-layout: fixed;
+            width: 100%;
+        }
+        .table th.date-col {
+            width: 160px;
+        }
+        .table th.name-col {
+            width: 120px;
+        }
+        .table th.email-col {
+            width: 180px;
+        }
+        .table th.subject-col {
+            width: 140px;
+        }
+        .table td {
+            white-space: normal;
+            word-wrap: break-word;
+            vertical-align: top;
+            padding: 12px 8px;
+        }
+        .table th {
+            position: sticky;
+            top: 0;
+            background: white;
+            box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.1);
+            padding: 12px 8px;
+        }
+        .message-col {
+            max-width: 400px;
+            overflow-wrap: break-word;
+        }
     </style>
 </head>
 <body>
     <div class="container-fluid mt-4">
-        <h2>Messages</h2>
+        <h2>Message Management</h2>
         
         <!-- Action Buttons -->
         <div class="mb-3">
@@ -43,187 +76,160 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th onclick="sortMessages('timestamp')">Date ↕</th>
-                        <th onclick="sortMessages('name')">Name ↕</th>
-                        <th onclick="sortMessages('email')">Email ↕</th>
-                        <th onclick="sortMessages('subject')">Subject ↕</th>
+                        <th class="date-col" onclick="sortMessages('timestamp')">Date ↕</th>
+                        <th class="name-col" onclick="sortMessages('name')">Name ↕</th>
+                        <th class="email-col" onclick="sortMessages('email')">Email ↕</th>
+                        <th class="subject-col" onclick="sortMessages('subject')">Subject ↕</th>
                         <th>Message</th>
                     </tr>
                 </thead>
-                <tbody id="messagesContainer">
-                </tbody>
+                <tbody id="messageList"></tbody>
             </table>
         </div>
     </div>
 
     <script>
         let messages = [];
-        let sortField = 'timestamp';
-        let sortDirection = 'desc';
+        let selectedRows = new Set();
 
         function updateSelectedCount() {
-            const selectedCount = document.querySelectorAll('.message-row.selected').length;
-            document.getElementById('selectedCount').textContent = 
-                selectedCount ? `${selectedCount} message(s) selected` : '';
+            const count = selectedRows.size;
+            document.getElementById('selectedCount').textContent = count ? `${count} selected` : '';
+            document.getElementById('deleteBtn').disabled = count === 0;
         }
 
         function selectAll() {
-            const rows = document.querySelectorAll('.message-row');
-            const allSelected = Array.from(rows).every(row => row.classList.contains('selected'));
-            
-            rows.forEach(row => {
-                if (allSelected) {
+            const rows = document.getElementsByClassName('message-row');
+            if (selectedRows.size === rows.length) {
+                // Deselect all
+                selectedRows.clear();
+                for (let row of rows) {
                     row.classList.remove('selected');
-                } else {
-                    row.classList.add('selected');
                 }
-            });
-            
+            } else {
+                // Select all
+                for (let row of rows) {
+                    row.classList.add('selected');
+                    selectedRows.add(row.dataset.id);
+                }
+            }
             updateSelectedCount();
         }
 
         function toggleSelection(row) {
             row.classList.toggle('selected');
+            if (selectedRows.has(row.dataset.id)) {
+                selectedRows.delete(row.dataset.id);
+            } else {
+                selectedRows.add(row.dataset.id);
+            }
             updateSelectedCount();
         }
 
         function exportToCSV() {
-            const selectedRows = document.querySelectorAll('.message-row.selected');
-            const selectedFilenames = Array.from(selectedRows).map(row => row.dataset.filename);
-            const messagesToExport = selectedFilenames.length > 0 
-                ? messages.filter(msg => selectedFilenames.includes(msg.filename))
-                : messages;
-
-            const headers = ['Name', 'Email', 'Subject', 'Message', 'Date'];
-            const csvRows = [
-                headers.join(','),
-                ...messagesToExport.map(msg => [
-                    msg.name.replace(/,/g, ' '),
+            const rows = messages.map(msg => {
+                return [
+                    new Date(msg.timestamp).toLocaleString(),
+                    msg.name,
                     msg.email,
-                    msg.subject.replace(/,/g, ' '),
-                    `"${msg.message.replace(/"/g, '""')}"`,
-                    new Date(msg.timestamp).toLocaleString()
-                ].join(','))
-            ];
+                    msg.subject,
+                    msg.message
+                ].map(field => `"${field.replace(/"/g, '""')}"`).join(',');
+            });
 
-            const csvContent = csvRows.join('\n');
-            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const csv = [
+                ['Date', 'Name', 'Email', 'Subject', 'Message'].join(','),
+                ...rows
+            ].join('\n');
+
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
             const link = document.createElement('a');
             link.href = URL.createObjectURL(blob);
-            link.download = `messages_${new Date().toISOString().split('T')[0]}.csv`;
+            link.download = 'messages.csv';
             link.click();
-            URL.revokeObjectURL(link.href);
         }
 
         async function deleteSelected() {
-            const selectedRows = document.querySelectorAll('.message-row.selected');
-            console.log('Selected rows:', selectedRows.length);
+            if (!selectedRows.size) return;
             
-            if (!selectedRows.length) {
-                console.log('No rows selected');
-                return;
-            }
-            
-            if (!confirm(`Are you sure you want to delete ${selectedRows.length} message(s)?`)) {
-                console.log('Deletion cancelled by user');
-                return;
-            }
+            if (confirm(`Delete ${selectedRows.size} message(s)?`)) {
+                const filenames = Array.from(selectedRows);
+                
+                try {
+                    const response = await fetch('/functions/api/messages', {
+                        method: 'DELETE',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ filenames })
+                    });
 
-            try {
-                const filenames = Array.from(selectedRows).map(row => {
-                    console.log('Row data:', row.dataset);
-                    return row.dataset.filename;
-                });
-                console.log('Files to delete:', filenames);
+                    if (!response.ok) {
+                        throw new Error('Failed to delete messages');
+                    }
 
-                const response = await fetch('/api/messages', {
-                    method: 'DELETE',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ filenames })
-                });
-
-                console.log('Delete response status:', response.status);
-                const data = await response.json();
-                console.log('Delete response data:', data);
-
-                if (!response.ok) {
-                    throw new Error(data.error || 'Failed to delete messages');
-                }
-
-                if (data.success) {
-                    selectedRows.forEach(row => row.remove());
+                    // Clear selection and reload
+                    selectedRows.clear();
                     updateSelectedCount();
-                    messages = messages.filter(msg => !filenames.includes(msg.filename));
-                    console.log('Messages deleted successfully');
-                } else {
-                    throw new Error('Server returned unsuccessful response');
+                    await loadMessages();
+                } catch (error) {
+                    console.error('Error:', error);
+                    alert('Failed to delete messages');
                 }
-            } catch (error) {
-                console.error('Error deleting messages:', error);
-                alert('Failed to delete messages. Please try again.');
             }
         }
 
         function displayMessages() {
-            const container = document.getElementById('messagesContainer');
-            container.innerHTML = '';
+            const tbody = document.getElementById('messageList');
+            tbody.innerHTML = '';
 
             messages.forEach(msg => {
                 const row = document.createElement('tr');
                 row.className = 'message-row';
-                row.dataset.filename = msg.filename;
-                row.onclick = () => toggleSelection(row);
-
+                row.dataset.id = msg.filename;
+                if (selectedRows.has(msg.filename)) {
+                    row.classList.add('selected');
+                }
+                
                 row.innerHTML = `
                     <td>${new Date(msg.timestamp).toLocaleString()}</td>
                     <td>${msg.name}</td>
                     <td>${msg.email}</td>
                     <td>${msg.subject}</td>
-                    <td class="message-content">${msg.message}</td>
+                    <td class="message-col">${msg.message}</td>
                 `;
                 
-                container.appendChild(row);
+                row.addEventListener('click', () => toggleSelection(row));
+                tbody.appendChild(row);
             });
-            
-            updateSelectedCount();
         }
 
         function sortMessages(field) {
-            sortDirection = field === sortField ? (sortDirection === 'asc' ? 'desc' : 'asc') : 'asc';
-            sortField = field;
-            
             messages.sort((a, b) => {
-                let comparison = 0;
                 if (field === 'timestamp') {
-                    comparison = new Date(a[field]) - new Date(b[field]);
-                } else {
-                    comparison = String(a[field]).localeCompare(String(b[field]));
+                    return new Date(b.timestamp) - new Date(a.timestamp);
                 }
-                return sortDirection === 'asc' ? comparison : -comparison;
+                const aVal = a[field].toLowerCase();
+                const bVal = b[field].toLowerCase();
+                return aVal.localeCompare(bVal);
             });
-            
             displayMessages();
         }
 
         async function loadMessages() {
             try {
-                const response = await fetch('/api/messages');
-                console.log('Load response status:', response.status);
+                const response = await fetch('/functions/api/messages');
                 
                 if (!response.ok) {
                     throw new Error('Failed to load messages');
                 }
-                
-                const data = await response.json();
-                console.log('Loaded messages:', data);
-                
-                messages = data;
-                sortMessages('timestamp');
+
+                messages = await response.json();
+                messages.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+                displayMessages();
             } catch (error) {
-                console.error('Error loading messages:', error);
-                alert('Failed to load messages. Please try again.');
+                console.error('Error:', error);
+                alert('Failed to load messages');
             }
         }
 
