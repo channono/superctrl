@@ -21,14 +21,15 @@ document.addEventListener('DOMContentLoaded', async () => {
         try {
             // Convert data to URL parameters
             const params = new URLSearchParams(data);
-            const url = `/api/contact?${params.toString()}`;
+            const url = `/functions/api/contact?${params.toString()}`;  
             console.log('Sending request to:', url);
             console.log('Form data:', data);
 
             const res = await fetch(url, {
                 method: 'GET',
                 headers: {
-                    'Accept': 'application/json'
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
                 }
             });
             
