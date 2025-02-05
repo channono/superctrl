@@ -22,8 +22,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             // Convert data to URL parameters
             const params = new URLSearchParams(data);
             const res = await fetch(`/functions/api/contact?${params.toString()}`, {
-                method: 'GET',
-                headers: {'Accept': 'application/json'}
+                method: 'GET'
             });
             
             if (res.ok) {
