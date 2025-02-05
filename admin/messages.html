@@ -12,10 +12,15 @@
         .message-row.selected {
             background-color: #e3f2fd;
         }
+        .table {
+            table-layout: fixed;
+            width: 100%;
+        }
         .message-content {
             max-width: 300px;
-            white-space: pre-wrap;
-            word-wrap: break-word;
+            white-space: normal;
+            word-break: break-word;
+            overflow-wrap: break-word;
         }
         th {
             cursor: pointer;
