@@ -36,14 +36,29 @@ export async function onRequest(context) {
     }
 
     const formData = await request.json();
-    const { name, email, subject, message } = formData;
+    console.log('Received form data:', formData);
+
+    const { name, email, subject, topic, message } = formData;
+    // Use either subject or topic field
+    const messageSubject = subject || topic || '';
 
     // Log received data
-    console.log('Received form data:', { name, email, subject });
+    console.log('Processing message:', { name, email, subject: messageSubject });
 
     // Validate required fields
-    if (!name || !email || !subject || !message) {
-      return new Response(JSON.stringify({ error: 'All fields are required' }), {
+    if (!name || !email || !messageSubject || !message) {
+      const missing = [];
+      if (!name) missing.push('name');
+      if (!email) missing.push('email');
+      if (!messageSubject) missing.push('subject/topic');
+      if (!message) missing.push('message');
+
+      console.log('Missing fields:', missing);
+
+      return new Response(JSON.stringify({ 
+        error: 'All fields are required',
+        missing 
+      }), {
         status: 400,
         headers: {
           'Content-Type': 'application/json',
@@ -56,7 +71,7 @@ export async function onRequest(context) {
     const messageData = {
       name,
       email,
-      subject,
+      subject: messageSubject,
       message,
       timestamp: new Date().toISOString()
     };
