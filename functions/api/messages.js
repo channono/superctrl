@@ -1,47 +1,79 @@
-export async function onRequestGet(context) {
+export async function onRequest(context) {
+  const { request, env } = context;
+
+  // Handle CORS
+  if (request.method === 'OPTIONS') {
+    return new Response(null, {
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET, DELETE',
+        'Access-Control-Allow-Headers': 'Content-Type'
+      }
+    });
+  }
+
   try {
-    // Check if KV binding exists
-    if (!context.env.MESSAGES) {
-      console.error('KV binding MESSAGES not found');
-      return new Response(JSON.stringify({ 
-        error: 'KV binding not configured',
-        env: Object.keys(context.env)
-      }), {
-        status: 500,
-        headers: { 'Content-Type': 'application/json' }
+    if (request.method === 'GET') {
+      // List all messages
+      const messages = [];
+      const keys = await env.MESSAGES.list();
+      
+      for (const key of keys.keys) {
+        const message = await env.MESSAGES.get(key.name, { type: 'json' });
+        if (message) {
+          messages.push({
+            ...message,
+            filename: key.name
+          });
+        }
+      }
+
+      return new Response(JSON.stringify(messages), {
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*'
+        }
+      });
+    } else if (request.method === 'DELETE') {
+      // Delete selected messages
+      const { filenames } = await request.json();
+      
+      if (!Array.isArray(filenames)) {
+        return new Response(JSON.stringify({ error: 'Invalid request: filenames must be an array' }), {
+          status: 400,
+          headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*'
+          }
+        });
+      }
+
+      // Delete messages from KV
+      await Promise.all(filenames.map(filename => env.MESSAGES.delete(filename)));
+
+      return new Response(JSON.stringify({ success: true }), {
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*'
+        }
       });
     }
 
-    // List all keys from KV
-    const keys = await context.env.MESSAGES.list();
-    
-    // Get all messages
-    const messages = await Promise.all(
-      keys.keys.map(async (key) => {
-        const value = await context.env.MESSAGES.get(key.name);
-        const messageData = JSON.parse(value);
-        return {
-          ...messageData,
-          id: key.name
-        };
-      })
-    );
-
-    // Sort by timestamp, newest first
-    messages.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
-
-    return new Response(JSON.stringify(messages), {
-      headers: { 'Content-Type': 'application/json' }
+    return new Response(JSON.stringify({ error: 'Method not allowed' }), {
+      status: 405,
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+      }
     });
   } catch (error) {
-    console.error('Failed to read messages:', error);
-    return new Response(JSON.stringify({ 
-      error: 'Failed to read messages',
-      details: error.message,
-      stack: error.stack
-    }), {
+    console.error('Error:', error);
+    return new Response(JSON.stringify({ error: 'Internal server error' }), {
       status: 500,
-      headers: { 'Content-Type': 'application/json' }
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+      }
     });
   }
 }
