@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         try {
             // Convert data to URL parameters
             const params = new URLSearchParams(data);
-            const url = `/functions/api/contact?${params.toString()}`;  
+            const url = `/api/contact?${params.toString()}`;
             console.log('Sending request to:', url);
             console.log('Form data:', data);
 
