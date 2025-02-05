@@ -89,57 +89,6 @@
                 URL.revokeObjectURL(link.href);
             }
 
-            async function deleteSelected() {
-                const selectedRows = document.querySelectorAll('.message-row.selected');
-                console.log('Selected rows:', selectedRows.length);
-                
-                if (!selectedRows.length) {
-                    console.log('No rows selected');
-                    return;
-                }
-                
-                if (!confirm(`Are you sure you want to delete ${selectedRows.length} message(s)?`)) {
-                    console.log('Deletion cancelled by user');
-                    return;
-                }
-
-                try {
-                    const filenames = Array.from(selectedRows).map(row => {
-                        console.log('Row data:', row.dataset);
-                        return row.dataset.filename;
-                    });
-                    console.log('Files to delete:', filenames);
-
-                    const response = await fetch('/api/messages', {
-                        method: 'DELETE',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({ filenames })
-                    });
-
-                    console.log('Delete response status:', response.status);
-                    const data = await response.json();
-                    console.log('Delete response data:', data);
-
-                    if (!response.ok) {
-                        throw new Error(data.error || 'Failed to delete messages');
-                    }
-
-                    if (data.success) {
-                        selectedRows.forEach(row => row.remove());
-                        updateSelectedCount();
-                        messages = messages.filter(msg => !filenames.includes(msg.filename));
-                        console.log('Messages deleted successfully');
-                    } else {
-                        throw new Error('Server returned unsuccessful response');
-                    }
-                } catch (error) {
-                    console.error('Error deleting messages:', error);
-                    alert('Failed to delete messages. Please try again.');
-                }
-            }
-
             function displayMessages() {
                 const container = document.getElementById('messagesContainer');
                 container.innerHTML = '';
@@ -183,7 +132,7 @@
 
             async function loadMessages() {
                 try {
-                    const response = await fetch('functions/api/messages');
+                    const response = await fetch('/functions/api/messages');
                     console.log('Load response status:', response.status);
                     
                     if (!response.ok) {
@@ -201,6 +150,57 @@
                 }
             }
 
+            async function deleteSelected() {
+                const selectedRows = document.querySelectorAll('.message-row.selected');
+                console.log('Selected rows:', selectedRows.length);
+                
+                if (!selectedRows.length) {
+                    console.log('No rows selected');
+                    return;
+                }
+                
+                if (!confirm(`Are you sure you want to delete ${selectedRows.length} message(s)?`)) {
+                    console.log('Deletion cancelled by user');
+                    return;
+                }
+
+                try {
+                    const filenames = Array.from(selectedRows).map(row => {
+                        console.log('Row data:', row.dataset);
+                        return row.dataset.filename;
+                    });
+                    console.log('Files to delete:', filenames);
+
+                    const response = await fetch('/functions/api/messages', {
+                        method: 'DELETE',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ filenames })
+                    });
+
+                    console.log('Delete response status:', response.status);
+                    const data = await response.json();
+                    console.log('Delete response data:', data);
+
+                    if (!response.ok) {
+                        throw new Error(data.error || 'Failed to delete messages');
+                    }
+
+                    if (data.success) {
+                        selectedRows.forEach(row => row.remove());
+                        updateSelectedCount();
+                        messages = messages.filter(msg => !filenames.includes(msg.filename));
+                        console.log('Messages deleted successfully');
+                    } else {
+                        throw new Error('Server returned unsuccessful response');
+                    }
+                } catch (error) {
+                    console.error('Error deleting messages:', error);
+                    alert('Failed to delete messages. Please try again.');
+                }
+            }
+
             // Add event listeners
             document.getElementById('deleteBtn').addEventListener('click', deleteSelected);
             document.getElementById('selectAllBtn').addEventListener('click', selectAll);
@@ -211,6 +211,7 @@
                 th.addEventListener('click', () => sortMessages(th.dataset.sort));
             });
 
+            // Load messages when page loads
             loadMessages();
         });
     </script>
