@@ -170,7 +170,7 @@
                     });
                     console.log('Files to delete:', filenames);
 
-                    const response = await fetch('api/messages/index', {
+                    const response = await fetch('functions/api/messages/', {
                         method: 'DELETE',
                         headers: {
                             'Content-Type': 'application/json'
