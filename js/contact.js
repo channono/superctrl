@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         
         try {
             const res = await fetch('/functions/api/contact', {
-                method: 'GET',
+                method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify(data)
             });
