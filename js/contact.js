@@ -19,10 +19,11 @@ document.addEventListener('DOMContentLoaded', async () => {
         };
         
         try {
-            const res = await fetch('/functions/api/contact', {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify(data)
+            // Convert data to URL parameters
+            const params = new URLSearchParams(data);
+            const res = await fetch(`/functions/api/contact?${params.toString()}`, {
+                method: 'GET',
+                headers: {'Accept': 'application/json'}
             });
             
             if (res.ok) {
