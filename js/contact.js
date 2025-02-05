@@ -23,14 +23,19 @@ document.addEventListener('DOMContentLoaded', async () => {
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify(data)
             });
+            
+            console.log('Response status:', res.status);
+            const result = await res.json();
+            console.log('Response data:', result);
+            
             if (res.ok) {
                 alert(i18next.t('contact.success'));
                 form.reset();
             } else {
-                const result = await res.json();
                 alert(result.error || i18next.t('contact.error'));
             }
-        } catch {
+        } catch (error) {
+            console.error('Error:', error);
             alert(i18next.t('contact.error'));
         } finally {
             button.disabled = false;
