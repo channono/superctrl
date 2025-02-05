@@ -1,5 +1,13 @@
-export default async function onRequest(context) {
+export async function onRequestGet(context) {
   const { request, env } = context;
+
+  // Set CORS headers
+  const headers = {
+    'Access-Control-Allow-Origin': '*',
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Methods': 'GET',
+    'Access-Control-Allow-Headers': 'Content-Type'
+  };
 
   try {
     // Log request info
@@ -24,10 +32,7 @@ export default async function onRequest(context) {
         error: 'All fields are required'
       }), {
         status: 400,
-        headers: {
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*'
-        }
+        headers
       });
     }
 
@@ -50,15 +55,12 @@ export default async function onRequest(context) {
         message: 'Please bind the MESSAGES KV namespace in Cloudflare Pages settings'
       }), {
         status: 500,
-        headers: {
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*'
-        }
+        headers
       });
     }
 
     // Generate unique ID using timestamp and email
-    const filename = `${Date.now()}-${email.replace(/[^a-zA-Z0-9]/g, '')}.json`;
+    const filename = `message_${Date.now()}_${email.replace(/[^a-zA-Z0-9]/g, '')}.json`;
     console.log('Generated filename:', filename);
 
     // Store in KV
@@ -75,10 +77,7 @@ export default async function onRequest(context) {
       message: 'Message sent successfully',
       filename
     }), {
-      headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*'
-      }
+      headers
     });
   } catch (error) {
     console.error('Error handling request:', error);
@@ -87,10 +86,7 @@ export default async function onRequest(context) {
       details: error.message
     }), {
       status: 500,
-      headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*'
-      }
+      headers
     });
   }
 }
