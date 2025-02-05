@@ -13,8 +13,13 @@ export async function onRequest(context) {
       });
     }
 
-    const formData = await request.json();
-    const { name, email, subject, message } = formData;
+    // Get data from URL parameters
+    const url = new URL(request.url);
+    const name = url.searchParams.get('name');
+    const email = url.searchParams.get('email');
+    const subject = url.searchParams.get('subject');
+    const message = url.searchParams.get('message');
+    const timestamp = url.searchParams.get('timestamp');
 
     // Validate required fields
     if (!name || !email || !subject || !message) {
@@ -35,7 +40,7 @@ export async function onRequest(context) {
       email,
       subject,
       message,
-      timestamp: new Date().toISOString()
+      timestamp: timestamp || new Date().toISOString()
     };
 
     // Generate unique ID
