@@ -14,48 +14,15 @@
         }
         .message-content {
             max-width: 300px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            overflow: visible;
         }
         th {
             cursor: pointer;
         }
         th:hover {
             background-color: #f8f9fa;
-        }
-        .table {
-            table-layout: fixed;
-            width: 100%;
-        }
-        .table th.date-col {
-            width: 160px;
-        }
-        .table th.name-col {
-            width: 120px;
-        }
-        .table th.email-col {
-            width: 180px;
-        }
-        .table th.subject-col {
-            width: 140px;
-        }
-        .table td {
-            white-space: normal;
-            word-wrap: break-word;
-            vertical-align: top;
-            padding: 12px 8px;
-        }
-        .table th {
-            position: sticky;
-            top: 0;
-            background: white;
-            box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.1);
-            padding: 12px 8px;
-        }
-        .message-col {
-            max-width: 400px;
-            overflow-wrap: break-word;
         }
     </style>
 </head>
@@ -76,10 +43,10 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th class="date-col" onclick="sortMessages('timestamp')">Date ↕</th>
-                        <th class="name-col" onclick="sortMessages('name')">Name ↕</th>
-                        <th class="email-col" onclick="sortMessages('email')">Email ↕</th>
-                        <th class="subject-col" onclick="sortMessages('subject')">Subject ↕</th>
+                        <th onclick="sortMessages('timestamp')">Date ↕</th>
+                        <th onclick="sortMessages('name')">Name ↕</th>
+                        <th onclick="sortMessages('email')">Email ↕</th>
+                        <th onclick="sortMessages('subject')">Subject ↕</th>
                         <th>Message</th>
                     </tr>
                 </thead>
@@ -196,7 +163,7 @@
                     <td>${msg.name}</td>
                     <td>${msg.email}</td>
                     <td>${msg.subject}</td>
-                    <td class="message-col">${msg.message}</td>
+                    <td class="message-content">${msg.message}</td>
                 `;
                 
                 row.addEventListener('click', () => toggleSelection(row));
