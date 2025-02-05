@@ -1,29 +1,17 @@
-export async function onRequest(context) {
+export default async function onRequest(context) {
   const { request, env } = context;
 
   try {
     // Log request info
     console.log('Request method:', request.method);
     console.log('Request URL:', request.url);
+    console.log('Available env bindings:', Object.keys(env));
 
     // Check if KV namespace exists
     if (!env.MESSAGES) {
-      console.error('MESSAGES KV namespace not found');
-      return new Response(JSON.stringify({ error: 'Server configuration error' }), {
+      console.error('MESSAGES KV namespace not found - please bind it in Cloudflare Pages settings');
+      return new Response(JSON.stringify({ error: 'Server configuration error - KV not bound' }), {
         status: 500,
-        headers: {
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*'
-        }
-      });
-    }
-
-    // Only handle GET method
-    if (request.method !== 'GET') {
-      return new Response(JSON.stringify({ 
-        error: 'Method not allowed'
-      }), {
-        status: 405,
         headers: {
           'Content-Type': 'application/json',
           'Access-Control-Allow-Origin': '*'
@@ -37,7 +25,7 @@ export async function onRequest(context) {
     const email = url.searchParams.get('email');
     const subject = url.searchParams.get('subject');
     const message = url.searchParams.get('message');
-    const timestamp = url.searchParams.get('timestamp');
+    const timestamp = url.searchParams.get('timestamp') || new Date().toISOString();
 
     console.log('Received parameters:', { name, email, subject, message, timestamp });
 
@@ -61,13 +49,13 @@ export async function onRequest(context) {
       email,
       subject,
       message,
-      timestamp: timestamp || new Date().toISOString()
+      timestamp
     };
 
     console.log('Message data to save:', messageData);
 
-    // Generate unique ID
-    const filename = `${Date.now()}-${Math.random().toString(36).substring(2, 15)}.json`;
+    // Generate unique ID using timestamp and email
+    const filename = `${Date.now()}-${email.replace(/[^a-zA-Z0-9]/g, '')}.json`;
     console.log('Generated filename:', filename);
 
     // Store in KV
