@@ -14,7 +14,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             name: form.name.value,
             email: form.email.value,
             subject: form.topic.value,
-            message: form.message.value
+            message: form.message.value,
+            timestamp: new Date().toISOString()
         };
         
         try {
