@@ -1018,5 +1018,46 @@ const enTranslation = {
         "privacyPolicy": "Privacy Policy",
         "termsOfService": "Terms of Service",
         "demoDisclaimer": "Demo for testing purposes only"
+    },
+    "blog": {
+        "title": "Industry Insights",
+        "subtitle": "Stay updated with the latest trends and innovations in industrial automation",
+        "readMore": "Read More",
+        "browseByCategory": "Browse by Category",
+        "latestArticles": "Latest Articles",
+        "recentPosts": "最近的文章",
+        "noPosts": "没有文章",
+        "featured":{
+            "title": "The Future of Industrial Automation: Intelligent Industry and Beyond",
+            "description": "Explore how Intelligent Industry is revolutionizing manufacturing processes and what it means for your business.",
+        },
+        "categories":{
+            "sustainability": "Sustainability",
+            "security": "Industrial CyberSecurity",
+            "technology": "Innovation Technology",
+            "industry": "Intelligent Industry",
+            "intelligentIndustry": "Intelligent Industry",
+            "energy": "Energy Efficiency"
+        },
+        "newsletter":{
+            "title":"Subscribe to Our Mail List",
+            "description":"Subscribe to our mailing list to get the latest updates and news.",
+            "emailPlaceholder":"Enter your email address",
+            "subscribe":"Subscribe"
+        },
+        "recentPosts":{
+            "smartManufacturing":{
+                "title":"Smart Manufacturing: The Role of AI and Machine Learning",
+                "description":"Discover how artificial intelligence is transforming manufacturing processes and how it can help you optimize your operations and reduce costs."
+            },
+            "energyEfficiency":{
+                "title":"Energy Efficiency: Maximizing Energy Efficiency in Industrial Processes",
+                "description":"Learn about the latest strategies for reducing energy consumption and how it can impact your business."
+            },
+            "industrialCybersecurity":{
+                "title":"Industry Security: Protecting Your Assets with AI",
+                "description":"Unlock the full potential of AI in industrial security with our comprehensive guide."
+            }
+        }
     }
 }
