@@ -7,18 +7,18 @@ const i18n = {
         }
         try {
             // Get saved language from localStorage
-            const savedLang = localStorage.getItem('language') || 'en';
+            const savedLang = localStorage.getItem('language');
             await i18next
                 .use(i18nextBrowserLanguageDetector)
                 .init({
                     lng: savedLang,  // Use saved language
-                    fallbackLng: 'en',
+                    fallbackLng: savedLang || 'en',  // Use saved language as fallback
                     resources: {
                         en: { translation: enTranslation },
                         zh: { translation: zhTranslation }
                     },
                     detection: {
-                        order: ['localStorage', 'navigator'],
+                        order: ['localStorage'],  // Only use localStorage
                         lookupLocalStorage: 'language',
                         caches: ['localStorage']
                     },
@@ -40,15 +40,11 @@ const i18n = {
 
             // Update content on language change
             i18next.on('languageChanged', () => {
-                console.log('Language changed to:', i18next.language);
                 this.updateContent();
                 this.updateActiveLanguage();
             });
             
             this.initialized = true;
-            //console.log('i18next initialized successfully');
-            //console.log('Current language:', i18next.language);
-           // console.log('Available languages:', i18next.languages);
         } catch (error) {
             console.error('Error initializing i18next:', error);
         }
